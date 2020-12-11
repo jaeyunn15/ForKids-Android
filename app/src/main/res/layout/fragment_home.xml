@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/main_background"
-    tools:context=".ui.fragment.HomeFragment">
+    tools:context=".ui.fragment.home.HomeFragment">
 
     <include
         android:id="@+id/tb_home"
@@ -35,7 +35,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_home_naming1"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="25sp"
-        android:text="정재윤 님은 커피 중독자"
+        android:text="정재윤님은 커피 중독자"
         android:textSize="18sp"
         android:layout_marginTop="5dp"
         android:fontFamily="@font/notosans_bold"

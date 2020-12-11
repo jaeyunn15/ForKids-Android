@@ -157,14 +157,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="미션하기"
+                    android:text="용돈 상한선 정하기"
                     app:layout_constraintTop_toBottomOf="@+id/cv_home_account"
                     app:layout_constraintStart_toStartOf="parent"
                     android:layout_marginTop="100dp"
                     android:textColor="@color/grayscale_1000"
                     android:textStyle="bold"
-                    android:textSize="20sp"
-                    android:layout_marginStart="50dp"
+                    android:textSize="15sp"
+                    android:layout_marginStart="15dp"
                     android:background="@drawable/gradation_effect_main"
                     />
 
@@ -172,14 +172,14 @@
                     android:id="@+id/tv_recommend_edu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="추천 교육"
+                    android:text="추천 상품"
                     app:layout_constraintTop_toBottomOf="@+id/cv_home_account"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:layout_marginTop="100dp"
                     android:textColor="@color/grayscale_1000"
                     android:textStyle="bold"
-                    android:textSize="20sp"
-                    android:layout_marginEnd="50dp"
+                    android:textSize="15sp"
+                    android:layout_marginEnd="25dp"
                     android:background="@drawable/gradation_effect_main"
                     />
             </androidx.constraintlayout.widget.ConstraintLayout>

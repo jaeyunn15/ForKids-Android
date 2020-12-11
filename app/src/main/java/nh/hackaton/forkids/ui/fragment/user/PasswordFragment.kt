@@ -1,4 +1,4 @@
-package nh.hackaton.forkids.ui.fragment
+package nh.hackaton.forkids.ui.fragment.user
 
 import android.content.Intent
 import android.os.Bundle

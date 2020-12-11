@@ -4,25 +4,26 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:background="@color/transparent"
-    android:layout_height="?attr/actionBarSize">
+    android:layout_height="wrap_content">
 
     <ImageView
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:src="@drawable/ic_menu_white"
-        android:layout_marginTop="12dp"
-        android:layout_marginStart="15dp"
+        android:src="@drawable/ic_chevron_left"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="5dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         />
 
     <TextView
+        android:id="@+id/tv_forkids_warning"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ForKids"
+        android:text="ForKids Warning"
         android:textSize="24sp"
         android:fontFamily="@font/notosans_bold"
-        android:textColor="@color/grayscale_100_white"
+        android:textColor="@color/grayscale_1100"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,15 +31,15 @@
         />
 
     <ImageView
-        android:id="@+id/iv_bell"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/ic_bell_white"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_bell"
+        app:layout_constraintTop_toBottomOf="@+id/tv_forkids_warning"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginEnd="15dp"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="10dp"
         />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

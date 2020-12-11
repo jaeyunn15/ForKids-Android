@@ -9,7 +9,7 @@ import nh.hackaton.forkids.R
 import nh.hackaton.forkids.databinding.FragmentHomeKidsAnalysisBinding
 import nh.hackaton.forkids.ui.activity.MainActivity
 import nh.hackaton.forkids.ui.base.BaseFragment
-import nh.hackaton.forkids.ui.fragment.AnalysisFragment
+import nh.hackaton.forkids.ui.fragment.analysis.AnalysisFragment
 import nh.hackaton.forkids.ui.viewmodel.AccountViewModel
 import org.koin.android.ext.android.inject
 

@@ -3,7 +3,7 @@ package nh.hackaton.forkids.ui.activity
 import nh.hackaton.forkids.R
 import nh.hackaton.forkids.databinding.ActivityMainBinding
 import nh.hackaton.forkids.ui.base.BaseActivity
-import nh.hackaton.forkids.ui.fragment.HomeFragment
+import nh.hackaton.forkids.ui.fragment.home.HomeFragment
 import nh.hackaton.forkids.util.replace
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {

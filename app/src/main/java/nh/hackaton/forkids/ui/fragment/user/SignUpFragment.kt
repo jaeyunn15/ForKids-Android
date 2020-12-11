@@ -1,4 +1,4 @@
-package nh.hackaton.forkids.ui.fragment
+package nh.hackaton.forkids.ui.fragment.user
 
 import nh.hackaton.forkids.R
 import nh.hackaton.forkids.databinding.FragmentSignUpBinding

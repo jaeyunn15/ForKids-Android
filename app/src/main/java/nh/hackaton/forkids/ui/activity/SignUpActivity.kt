@@ -1,16 +1,11 @@
 package nh.hackaton.forkids.ui.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import nh.hackaton.forkids.R
 import nh.hackaton.forkids.databinding.ActivitySignUpBinding
 import nh.hackaton.forkids.ui.base.BaseActivity
-import nh.hackaton.forkids.ui.base.ProgressDialog
-import nh.hackaton.forkids.ui.fragment.SignUpFragment
-import nh.hackaton.forkids.ui.viewmodel.UserViewModel
+import nh.hackaton.forkids.ui.fragment.user.SignUpFragment
 import nh.hackaton.forkids.util.replace
-import org.koin.android.ext.android.inject
 
 class SignUpActivity : BaseActivity<ActivitySignUpBinding>() {
 

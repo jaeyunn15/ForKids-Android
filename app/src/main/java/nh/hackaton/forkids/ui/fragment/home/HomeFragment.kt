@@ -1,4 +1,4 @@
-package nh.hackaton.forkids.ui.fragment
+package nh.hackaton.forkids.ui.fragment.home
 
 import androidx.core.view.ViewCompat
 import androidx.viewpager2.widget.ViewPager2
