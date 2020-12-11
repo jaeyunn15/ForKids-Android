@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit
 
 val networkModule = module {
 
-    val BASE_URL = ""
+    val BASE_URL = "http://54.180.87.117"
 
 //    single<API> {
 //        Retrofit.Builder()

@@ -6,15 +6,18 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activity.MainActivity">
+    tools:context=".ui.activity.SignUpActivity">
 
+    <include
+        android:id="@+id/tb_signup"
+        layout="@layout/toolbar_signup"/>
 
     <FrameLayout
-        android:id="@+id/main_container"
+        android:id="@+id/container"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tb_signup"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         />
