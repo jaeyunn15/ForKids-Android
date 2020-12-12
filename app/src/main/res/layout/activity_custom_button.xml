@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <EditText android:id="@+id/edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:cursorVisible="true" />
+
+    <TextView android:id="@+id/text_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/edit_text"
+        android:layout_above="@+id/viewFlipper"/>
+
+    <ViewFlipper android:id="@+id/viewFlipper"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <LinearLayout
+            android:id="@+id/firstViewFlipper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#c0c0c0"
+            android:orientation="vertical">
+            <TableLayout android:id="@+id/tableLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:stretchColumns="0,1,2">
+                <TableRow>
+                    <Button android:layout_height="100dp"
+                        android:background="@drawable/button_layout"
+                        android:textSize="30sp"
+                        android:textColor="@color/grayscale_1100"/>
+                    <Button android:layout_height="100dp"
+                        android:background="@drawable/button_layout"
+                        android:textColor="@color/grayscale_1100"
+                        android:textSize="30sp"/>
+                    <Button android:layout_height="100dp"
+                        android:background="@drawable/button_layout"
+                        android:textColor="@color/grayscale_1100"
+                        android:textSize="30sp"/>
+                </TableRow>
+                <TableRow>
+                    <Button android:layout_height="100dp"
+                        android:background="@drawable/button_layout"
+                        android:textColor="@color/grayscale_1100"
+                        android:textSize="30sp"/>
+                    <Button android:layout_height="100dp"
+                        android:background="@drawable/button_layout"
+                        android:textColor="@color/grayscale_1100"
+                        android:textSize="30sp"/>
+                    <Button android:layout_height="100dp"
+                        android:background="@drawable/button_layout"
+                        android:textColor="@color/grayscale_1100"
+                        android:textSize="30sp"/>
+                </TableRow>
+                <TableRow>
+                    <Button android:layout_height="100dp"
+                        android:background="@drawable/button_layout"
+                        android:textColor="@color/grayscale_1100"
+                        android:textSize="30sp"/>
+                    <Button android:layout_height="100dp"
+                        android:background="@drawable/button_layout"
+                        android:textColor="@color/grayscale_1100"
+                        android:textSize="30sp"/>
+                    <Button android:layout_height="100dp"
+                        android:background="@drawable/button_layout"
+                        android:textColor="@color/grayscale_1100"
+                        android:textSize="30sp"/>
+                </TableRow>
+                <TableRow>
+                    <Button android:id="@+id/key_ok"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/button_check_layout"
+                        android:textSize="20sp" android:text="확 인"
+                        android:textColor="@color/grayscale_1100"/>
+                    <Button android:layout_height="100dp"
+                        android:background="@drawable/button_layout"
+                        android:textSize="30sp"/>
+                    <Button android:id="@+id/key_cancel"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/button_check_layout"
+                        android:textSize="20sp" android:text="지 움"
+                        android:textColor="@color/grayscale_1100"/>
+                </TableRow>
+            </TableLayout>
+        </LinearLayout>
+    </ViewFlipper>
+</RelativeLayout>
+

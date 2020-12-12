@@ -17,7 +17,7 @@
             android:id="@+id/tv_ex"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="여기서 돈을 입금 "
+            android:text="입금 금액 입력"
             android:fontFamily="@font/notosans_bold"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"

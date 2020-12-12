@@ -1,25 +1,19 @@
 package nh.hackaton.forkids.ui.fragment.user
 
 import android.content.Context
-import android.content.Intent
-import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.os.Message
 import android.util.DisplayMetrics
 import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.AnimationUtils
 import android.view.animation.DecelerateInterpolator
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import nh.hackaton.forkids.R
-import nh.hackaton.forkids.databinding.FragmentPasswordBinding
-import nh.hackaton.forkids.ui.activity.MainActivity
+import nh.hackaton.forkids.databinding.FragmentLoginBinding
 import nh.hackaton.forkids.ui.activity.SignUpActivity
 import nh.hackaton.forkids.ui.base.BaseFragment
 import nh.hackaton.forkids.ui.viewmodel.UserViewModel
@@ -28,49 +22,34 @@ import org.koin.android.ext.android.inject
 import kotlin.random.Random
 
 
-class PasswordFragment : BaseFragment<FragmentPasswordBinding, UserViewModel>() {
+class LoginFragment : BaseFragment<FragmentLoginBinding, UserViewModel>() {
+
+    private lateinit var flipper: ViewFlipper
+    private var currentText : StringBuilder = StringBuilder()
+    private lateinit var imm: InputMethodManager
+
 
     override val layoutResourceId: Int
-        get() = R.layout.fragment_password
+        get() = R.layout.fragment_login
 
     override val viewModel: UserViewModel by inject()
 
+    val num = "00121110000" //계좌번호 고정. 나중에 로컬에서 불러올.
+
     override fun initStartView() {
-        observeData()
-        viewDataBinding.cvPasswordNext.setOnClickListener {
-            val signupActivity = activity as SignUpActivity
-            signupActivity.intentActivity()
-        }
         setCustomKeyboard()
     }
 
-    fun observeData(){
-        sharedViewModel.name_livedata.observe(viewLifecycleOwner){
-            name_data = it
-            Log.d("패스워드 화면 ",it)
-        }
-        sharedViewModel.type_livedata.observe(viewLifecycleOwner){
-            type_data = it.toString()
-            Log.d("패스워드 화면 ",it.toString())
-        }
-        sharedViewModel.phone_livedata.observe(viewLifecycleOwner){
-            phone_data = it
-            Log.d("패스워드 화면 ",it)
-        }
-        sharedViewModel.reg_livedata.observe(viewLifecycleOwner){
-            reg_data = it
-            Log.d("패스워드 화면 ",it)
-        }
+    override fun initDataBinding() {
     }
 
-    fun isCreateUser(){
-        viewModel.getUserCreate(reg_data, name_data, input_password, phone_data, type_data)
+    override fun initAfterBinding() {
     }
 
     private fun setCustomKeyboard(){
         val btnWidth: Int = getBtnWidth()
         imm = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        flipper = viewDataBinding.pwFragViewFlipper.apply {
+        flipper = viewDataBinding.viewFlipper.apply {
             visibility = View.VISIBLE
             val inAni = AnimationUtils.loadAnimation(requireContext(), R.anim.in_animation)
             inAni.interpolator = AccelerateInterpolator()
@@ -84,9 +63,9 @@ class PasswordFragment : BaseFragment<FragmentPasswordBinding, UserViewModel>() 
         val emptyView = TextView(requireContext())
         flipper.addView(emptyView, 0)
 
-        viewDataBinding.etPwFragPassword.apply {
+        viewDataBinding.etLoginPw.apply {
             setOnClickListener { v: View ->
-                imm.hideSoftInputFromWindow(viewDataBinding.etPwFragPassword.windowToken, 0)
+                imm.hideSoftInputFromWindow(viewDataBinding.etLoginPw.windowToken, 0)
                 if (flipper.currentView.id != R.id.login_firstViewFlipper) {
                     reOrderKeyboard(btnWidth)
                     flipper.visibility = View.VISIBLE
@@ -95,37 +74,34 @@ class PasswordFragment : BaseFragment<FragmentPasswordBinding, UserViewModel>() 
             }
         }
 
-        imm.hideSoftInputFromWindow(viewDataBinding.etPwFragPassword.windowToken, 0)
+        imm.hideSoftInputFromWindow(viewDataBinding.etLoginPw.windowToken, 0)
 
-        viewDataBinding.etPwFragPassword.requestFocus()
+        viewDataBinding.etLoginPw.requestFocus()
 
-        viewDataBinding.keyPwFragOk.apply {
+        viewDataBinding.keyLoginOk.apply {
             setOnClickListener{
-                if (flipper.currentView.id == R.id.pw_frag_firstViewFlipper) {
+                if (flipper.currentView.id == R.id.login_firstViewFlipper) {
                     flipper.displayedChild = 0
-                    val showtxt = StringBuilder(viewDataBinding.tvPwFragPassword.text)
-                    showtxt.append("\n"+currentText)
+                    val showtxt = StringBuilder(viewDataBinding.tvInivisibleTest.text)
+                    showtxt.append(currentText)
 
-                    viewDataBinding.tvPwFragPassword.text = showtxt.toString()
-                    input_password = showtxt.toString()
+                    viewModel.getUserLogin(num, showtxt.toString())
 
-                    isCreateUser()
-
-                    showtxt.append("")
                     currentText.clear()
-                    viewDataBinding.etPwFragPassword.text.clear()
-                    showtxt.clear()
-                    viewDataBinding.tvPwFragPassword.text = ""
+                    viewDataBinding.etLoginPw.text.clear()
+                    showtxt.append("")
+                    viewDataBinding.tvInivisibleTest.text = ""
+
+                    observeData()
                 }
-                observeCreateStatus()
             }
         }
 
 
-        viewDataBinding.keyPwFragCancel.apply {
+        viewDataBinding.keyLoginCancel.apply {
             setOnClickListener{ v : View ->
-                val curIndex = viewDataBinding.etPwFragPassword.selectionStart
-                var passwordStr = viewDataBinding.etPwFragPassword.text.toString()
+                val curIndex = viewDataBinding.etLoginPw.selectionStart
+                var passwordStr = viewDataBinding.etLoginPw.text.toString()
                 var passWordLength = passwordStr.length
                 if (curIndex == 0 || passWordLength == 0) {
                     return@setOnClickListener
@@ -137,27 +113,25 @@ class PasswordFragment : BaseFragment<FragmentPasswordBinding, UserViewModel>() 
                     currentText = StringBuilder(toString().substring(0,curIndex-1)+toString().substring(curIndex,passWordLength))
                 }
                 passWordLength = passwordStr.length
-                viewDataBinding.etPwFragPassword.setText("")
+                viewDataBinding.etLoginPw.setText("")
                 for( i in 1 .. passWordLength){
-                    viewDataBinding.etPwFragPassword.append("*") }
-                viewDataBinding.etPwFragPassword.setSelection(curIndex-1);
+                    viewDataBinding.etLoginPw.append("*") }
+                viewDataBinding.etLoginPw.setSelection(curIndex-1);
             }
         }
         reOrderKeyboard(btnWidth)
     }
 
-    private fun observeCreateStatus(){
-        val signUpActivity = activity as SignUpActivity
-        val loginFragment = LoginFragment()
-        viewModel.createStatusLiveData.observe(viewLifecycleOwner){
+    fun observeData(){
+        viewModel.loginStatusLiveData.observe(viewLifecycleOwner){
             if (it){
-                viewModel.createAccountLiveData.observe(viewLifecycleOwner){
-                    USER_ACCOUNT = it
-                    signUpActivity.replaceFragment(loginFragment)
-                }
+                val signupActivity = activity as SignUpActivity
+                signupActivity.intentActivity()
+
             }
         }
     }
+
 
     private fun reOrderKeyboard(btnWidth: Int) {
         val keyNumberArr = ArrayList<String>()
@@ -168,8 +142,8 @@ class PasswordFragment : BaseFragment<FragmentPasswordBinding, UserViewModel>() 
         var btn: Button? = null
         var randIndx: Int = 0;
         var random = Random
-        for (i in 0 until viewDataBinding.lpwFragTableLayout.childCount) {
-            tr = viewDataBinding.lpwFragTableLayout.getChildAt(i) as TableRow
+        for (i in 0 until viewDataBinding.loginTableLayout.childCount) {
+            tr = viewDataBinding.loginTableLayout.getChildAt(i) as TableRow
             for (i in 0 until tr.childCount) {
                 btn = tr.getChildAt(i) as Button
                 if (btn.id == -1) {
@@ -183,21 +157,21 @@ class PasswordFragment : BaseFragment<FragmentPasswordBinding, UserViewModel>() 
                         }
                     }
                     btn.setOnClickListener { v: View ->
-                        val curIndex = viewDataBinding.etPwFragPassword.selectionStart
-                        var passwordStr = viewDataBinding.etPwFragPassword.text.toString()
+                        val curIndex = viewDataBinding.etLoginPw.selectionStart
+                        var passwordStr = viewDataBinding.etLoginPw.text.toString()
                         val passWordLength = passwordStr.length
                         passwordStr.apply {
                             substring(0, curIndex) + keyTxt + substring(curIndex,passWordLength)
                         }
                         currentText.append(keyTxt)
-                        viewDataBinding.etPwFragPassword.setText("")
+                        viewDataBinding.etLoginPw.setText("")
                         for (i in 0 until curIndex) {
-                            viewDataBinding.etPwFragPassword.append("*") }
-                        viewDataBinding.etPwFragPassword.append(keyTxt)
+                            viewDataBinding.etLoginPw.append("*") }
+                        viewDataBinding.etLoginPw.append(keyTxt)
                         for (i in curIndex + 1 until passWordLength + 1) {
-                            viewDataBinding.etPwFragPassword.append("*")
+                            viewDataBinding.etLoginPw.append("*")
                         }
-                        viewDataBinding.etPwFragPassword.setSelection(curIndex + 1)
+                        viewDataBinding.etLoginPw.setSelection(curIndex + 1)
                         mHandler.sendEmptyMessageDelayed(0,1000)
                     }
                 }
@@ -206,11 +180,11 @@ class PasswordFragment : BaseFragment<FragmentPasswordBinding, UserViewModel>() 
     }
 
     private var mHandler = Handler(Looper.getMainLooper()){ msg: Message? ->
-        val curIndex = viewDataBinding.etPwFragPassword.selectionStart
-        viewDataBinding.etPwFragPassword.setText("")
+        val curIndex = viewDataBinding.etLoginPw.selectionStart
+        viewDataBinding.etLoginPw.setText("")
         for (i in 0 until curIndex) {
-            viewDataBinding.etPwFragPassword.append("*") }
-        viewDataBinding.etPwFragPassword.setSelection(curIndex)
+            viewDataBinding.etLoginPw.append("*") }
+        viewDataBinding.etLoginPw.setSelection(curIndex)
         false
     }
 
@@ -220,16 +194,4 @@ class PasswordFragment : BaseFragment<FragmentPasswordBinding, UserViewModel>() 
         return displaymetrics.widthPixels
     }
 
-    override fun initDataBinding() {}
-
-    override fun initAfterBinding() {}
-
-    private lateinit var flipper: ViewFlipper
-    private var currentText : StringBuilder = StringBuilder()
-    private lateinit var imm: InputMethodManager
-    private var input_password = ""
-    private var name_data = ""
-    private var type_data = ""
-    private var phone_data = ""
-    private var reg_data = ""
 }

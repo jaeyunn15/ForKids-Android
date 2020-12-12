@@ -1,10 +1,7 @@
 package nh.hackaton.forkids
 
 import android.app.Application
-import nh.hackaton.forkids.di.networkModule
-import nh.hackaton.forkids.di.remoteDataSourceModule
-import nh.hackaton.forkids.di.repositoryModule
-import nh.hackaton.forkids.di.viewModelModule
+import nh.hackaton.forkids.di.*
 import nh.hackaton.forkids.util.setupKoin
 
 class ForkidsApplication : Application(){
@@ -12,6 +9,7 @@ class ForkidsApplication : Application(){
         super.onCreate()
         setupKoin(
             this,
+            localDataSourceModule,
             networkModule,
             remoteDataSourceModule,
             repositoryModule,

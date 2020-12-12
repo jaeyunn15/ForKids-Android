@@ -4,6 +4,7 @@ import android.content.Intent
 import nh.hackaton.forkids.R
 import nh.hackaton.forkids.databinding.ActivitySignUpBinding
 import nh.hackaton.forkids.ui.base.BaseActivity
+import nh.hackaton.forkids.ui.fragment.user.LoginFragment
 import nh.hackaton.forkids.ui.fragment.user.SignUpFragment
 import nh.hackaton.forkids.util.replace
 
@@ -15,7 +16,9 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>() {
 
     override fun initStartView() {
         val signUpFragment = SignUpFragment()
-        replaceFragment(signUpFragment)
+        val loginFragment = LoginFragment()
+
+        replaceFragment(loginFragment)
     }
 
     override fun initDataBinding() {

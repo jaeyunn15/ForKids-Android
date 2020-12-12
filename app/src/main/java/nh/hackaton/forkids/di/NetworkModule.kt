@@ -1,5 +1,8 @@
 package nh.hackaton.forkids.di
 
+import com.google.gson.GsonBuilder
+import nh.hackaton.forkids.network.api.AccountApi
+import nh.hackaton.forkids.network.api.UserApi
 import okhttp3.OkHttpClient
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
@@ -10,17 +13,31 @@ import java.util.concurrent.TimeUnit
 
 val networkModule = module {
 
-    val BASE_URL = "http://54.180.87.117"
+    val BASE_URL = "http://54.180.87.117:5000/"
 
-//    single<API> {
-//        Retrofit.Builder()
-//            .baseUrl(BASE_URL)
-//            .client(get(named("okHttp")))
-//            .addCallAdapterFactory(RxJava2CallAdapterFactory.createAsync())
-//            .addConverterFactory(GsonConverterFactory.create())
-//            .build()
-//            .create(API::class.java)
-//    }
+    val gson = GsonBuilder()
+            .setLenient()
+            .create()
+
+    single<UserApi> {
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .client(get(named("okHttp")))
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.createAsync())
+            .addConverterFactory(GsonConverterFactory.create(gson))
+            .build()
+            .create(UserApi::class.java)
+    }
+
+    single<AccountApi> {
+        Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .client(get(named("okHttp")))
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.createAsync())
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build()
+                .create(AccountApi::class.java)
+    }
 
     single(named("okHttp")) {
         OkHttpClient.Builder().apply {
