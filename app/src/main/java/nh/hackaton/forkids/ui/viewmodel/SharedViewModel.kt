@@ -29,4 +29,7 @@ class SharedViewModel : BaseViewModel(){
     val userAccountLiveData : LiveData<String>
         get() = userAccount
 
+    val key = MutableLiveData<String>()
+    val keyLiveData : LiveData<String>
+        get() = key
 }

@@ -83,7 +83,7 @@
                         android:textColor="@color/grayscale_1100"
                         android:textSize="30sp"
                         android:fontFamily="@font/notosans_bold"
-                        android:text="254,000원"
+                        tools:text="254,000원"
                         />
 
                     <TextView
@@ -112,6 +112,31 @@
                         android:text="300,000원"
                         />
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="@+id/tv_home_account_month_sanghan"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_home_account_month_sanghan"
+                        android:layout_marginEnd="5dp"
+                        android:text="이번 달 상한선"
+                        android:textSize="10sp"
+                        android:textColor="@color/grayscale_700"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_home_account_month_sanghan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_home_account_month_money"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginEnd="25dp"
+                        android:textColor="@color/red_500"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/notosans_bold"
+                        android:text="240,000원"
+                        />
+
 
                     <TextView
                         android:id="@+id/tv_home_account_kids_account_search"
@@ -127,6 +152,17 @@
                         app:layout_constraintTop_toBottomOf="@+id/tv_home_account_month_money"
                         android:layout_marginTop="50dp"
                         android:layout_marginStart="20dp"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" 연결된 계좌 "
+                        android:textSize="14sp"
+                        android:fontFamily="@font/notosans_bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
                         />
 
 
@@ -158,6 +194,7 @@
             </androidx.cardview.widget.CardView>
 
                 <TextView
+                    android:id="@+id/tv_mission"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="미션하기"

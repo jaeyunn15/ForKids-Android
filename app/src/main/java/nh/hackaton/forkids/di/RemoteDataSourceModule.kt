@@ -1,9 +1,6 @@
 package nh.hackaton.forkids.di
 
-import nh.hackaton.forkids.network.datasource.AccountRemoteDataSource
-import nh.hackaton.forkids.network.datasource.AccountRemoteDataSourceImpl
-import nh.hackaton.forkids.network.datasource.UserRemoteDataSource
-import nh.hackaton.forkids.network.datasource.UserRemoteDataSourceImpl
+import nh.hackaton.forkids.network.datasource.*
 import org.koin.dsl.module
 
 val remoteDataSourceModule = module {
@@ -14,5 +11,9 @@ val remoteDataSourceModule = module {
     single<AccountRemoteDataSource>{
         AccountRemoteDataSourceImpl(get())
     }
-    
+
+    single<EduRemoteDataSource>{
+        EduRemoteDataSourceImpl(get())
+    }
+
 }

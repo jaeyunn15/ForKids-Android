@@ -2,6 +2,7 @@ package nh.hackaton.forkids.di
 
 import com.google.gson.GsonBuilder
 import nh.hackaton.forkids.network.api.AccountApi
+import nh.hackaton.forkids.network.api.EduApi
 import nh.hackaton.forkids.network.api.UserApi
 import okhttp3.OkHttpClient
 import org.koin.core.qualifier.named
@@ -38,6 +39,17 @@ val networkModule = module {
                 .build()
                 .create(AccountApi::class.java)
     }
+
+    single<EduApi> {
+        Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .client(get(named("okHttp")))
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.createAsync())
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build()
+                .create(EduApi::class.java)
+    }
+
 
     single(named("okHttp")) {
         OkHttpClient.Builder().apply {

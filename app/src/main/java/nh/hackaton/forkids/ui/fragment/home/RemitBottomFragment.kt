@@ -14,6 +14,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import nh.hackaton.forkids.R
 import nh.hackaton.forkids.databinding.FragmentRemitBottomBinding
 import nh.hackaton.forkids.ui.base.BaseBottomSheetFragment
+import nh.hackaton.forkids.ui.fragment.home.kids.HomeKidsAccountFragment
 import nh.hackaton.forkids.ui.viewmodel.AccountViewModel
 import nh.hackaton.forkids.util.AppPreference
 import org.koin.android.ext.android.inject
@@ -47,6 +48,8 @@ class RemitBottomFragment : BaseBottomSheetFragment<FragmentRemitBottomBinding, 
             if (!viewDataBinding.etRemitMoney.text.isNullOrBlank()){
                 if (!viewDataBinding.etRemitMessage.text.isNullOrBlank()){
                     sendMoney(viewDataBinding.etRemitMoney.text.toString(), viewDataBinding.etRemitMessage.text.toString())
+                    val homeFragment = HomeKidsAccountFragment()
+                    homeFragment.fetchNowMoney()
                     dismiss()
                 }
             }

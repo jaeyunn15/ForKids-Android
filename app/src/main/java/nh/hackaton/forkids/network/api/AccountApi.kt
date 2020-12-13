@@ -1,10 +1,7 @@
 package nh.hackaton.forkids.network.api
 
 import io.reactivex.Single
-import nh.hackaton.forkids.model.response.ResAccountListDto
-import nh.hackaton.forkids.model.response.ResAccountValueDto
-import nh.hackaton.forkids.model.response.ResUserLoginSuccessDto
-import nh.hackaton.forkids.model.response.ResWithdrawDto
+import nh.hackaton.forkids.model.response.*
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -32,4 +29,10 @@ interface AccountApi {
             @Query("content") content : String,
             @Query("regno") regno : String
     ): Single<ResWithdrawDto>
+
+    @GET("rank")
+    fun getRank(): Single<ResRankDto>
+
+    @GET("detailrank")
+    fun getDetailRank(): Single<ResDetailRankDto>
 }

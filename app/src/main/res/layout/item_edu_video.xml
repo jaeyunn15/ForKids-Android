@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="data"
+            type="nh.hackaton.forkids.model.response.ResVideoEduItemDto" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp"
+    >
+
+    <FrameLayout
+        android:id="@+id/fr_video"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/black"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            app:bindThumbnail="@{data.KEY}"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="02:10"
+            android:text="@{data.TIME}"
+            android:textColor="@color/grayscale_100_white"
+            android:textSize="18sp"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            />
+
+    </FrameLayout>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/civ_bank"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        app:layout_constraintTop_toBottomOf="@+id/fr_video"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="15dp"
+        android:src="@drawable/bank_logo"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="금융감독원"
+        app:layout_constraintTop_toBottomOf="@+id/civ_bank"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/grayscale_1000"
+        android:fontFamily="@font/notosans_bold"
+        android:textSize="12dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp"
+        />
+
+    <TextView
+        android:id="@+id/tv_edu_video_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/civ_bank"
+        app:layout_constraintTop_toTopOf="@+id/civ_bank"
+        tools:text="금융 교육 @"
+        android:text="@{data.TITLE}"
+        android:textSize="17sp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="5dp"
+
+        />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:paddingBottom="10dp"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

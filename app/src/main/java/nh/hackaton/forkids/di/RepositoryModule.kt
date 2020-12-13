@@ -1,9 +1,6 @@
 package nh.hackaton.forkids.di
 
-import nh.hackaton.forkids.network.repository.AccountRepo
-import nh.hackaton.forkids.network.repository.AccountRepoImpl
-import nh.hackaton.forkids.network.repository.UserRepo
-import nh.hackaton.forkids.network.repository.UserRepoImpl
+import nh.hackaton.forkids.network.repository.*
 import org.koin.dsl.module
 
 val repositoryModule = module {
@@ -12,5 +9,8 @@ val repositoryModule = module {
     }
     single<AccountRepo>{
         AccountRepoImpl(get())
+    }
+    single<EduRepo>{
+        EduRepoImpl(get())
     }
 }

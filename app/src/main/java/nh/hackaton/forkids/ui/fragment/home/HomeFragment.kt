@@ -16,9 +16,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, AccountViewModel>() {
     override val viewModel: AccountViewModel by inject()
 
     override fun initStartView() {
+        viewModel.getDataRank()
     }
 
     override fun initDataBinding() {
+        viewModel.nickNameLiveData.observe(viewLifecycleOwner){
+            viewDataBinding.tvHomeNaming2.text = it
+        }
+
     }
 
     override fun initAfterBinding() {

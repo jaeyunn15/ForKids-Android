@@ -4,6 +4,9 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import nh.hackaton.forkids.model.response.REC
+import nh.hackaton.forkids.model.response.ResDetailRankDto
+import nh.hackaton.forkids.model.response.ResRankDto
+import nh.hackaton.forkids.model.response.ResRankItemDto
 import nh.hackaton.forkids.network.repository.AccountRepo
 import nh.hackaton.forkids.ui.base.BaseViewModel
 
@@ -18,6 +21,18 @@ class AccountViewModel(
     private val _accountListLiveData = MutableLiveData<List<REC>>()
     val accountListLiveData : LiveData<List<REC>>
         get() = _accountListLiveData
+
+    private val _nickName = MutableLiveData<String>()
+    val nickNameLiveData : LiveData<String>
+        get() = _nickName
+
+    private val _rankData = MutableLiveData<ResRankDto>()
+    val rankDataLiveData : LiveData<ResRankDto>
+        get() = _rankData
+
+    private val _detailRankData = MutableLiveData<ResDetailRankDto>()
+    val detailRankDataLiveData : LiveData<ResDetailRankDto>
+        get() = _detailRankData
 
     fun getAccount(today:String, finacno :String, regno: String) {
         addDisposable(
@@ -55,6 +70,32 @@ class AccountViewModel(
                 },{
                     Log.d("게좌 출금 실패 ", it.localizedMessage)
                 })
+        )
+    }
+
+    fun getDataRank(){
+        addDisposable(
+                repo.getDataRank()
+                        .subscribe({
+                            _nickName.postValue(it[0].NICKNAME)
+                            _rankData.postValue(it)
+                            it.forEach {data ->
+                                Log.d("rank 성공 ", "${data.NICKNAME} ${data.COMMENT} ${data.COUNT}")
+                            }
+                        },{
+                            Log.d("rank 실패 ", it.localizedMessage)
+                        })
+        )
+    }
+
+    fun getDetailRank(){
+        addDisposable(
+                repo.getDetailRank()
+                        .subscribe({
+                            _detailRankData.postValue(it)
+                        },{
+                            Log.d("detail rank 실패 ", it.localizedMessage)
+                        })
         )
     }
 }

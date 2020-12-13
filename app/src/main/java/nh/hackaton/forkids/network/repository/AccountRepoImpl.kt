@@ -1,9 +1,7 @@
 package nh.hackaton.forkids.network.repository
 
 import io.reactivex.Single
-import nh.hackaton.forkids.model.response.ResAccountListDto
-import nh.hackaton.forkids.model.response.ResAccountValueDto
-import nh.hackaton.forkids.model.response.ResWithdrawDto
+import nh.hackaton.forkids.model.response.*
 import nh.hackaton.forkids.network.datasource.AccountRemoteDataSource
 
 class AccountRepoImpl (private val remote: AccountRemoteDataSource) : AccountRepo{
@@ -28,5 +26,13 @@ class AccountRepoImpl (private val remote: AccountRemoteDataSource) : AccountRep
         regno: String
     ): Single<ResWithdrawDto> {
         return remote.getWithdraw(today, account, money, content, regno)
+    }
+
+    override fun getDataRank(): Single<ResRankDto> {
+        return remote.getDataRank()
+    }
+
+    override fun getDetailRank(): Single<ResDetailRankDto> {
+        return remote.getDetailRank()
     }
 }

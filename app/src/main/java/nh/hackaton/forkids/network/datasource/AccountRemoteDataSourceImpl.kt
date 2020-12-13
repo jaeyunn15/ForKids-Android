@@ -3,9 +3,7 @@ package nh.hackaton.forkids.network.datasource
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import nh.hackaton.forkids.model.response.ResAccountListDto
-import nh.hackaton.forkids.model.response.ResAccountValueDto
-import nh.hackaton.forkids.model.response.ResWithdrawDto
+import nh.hackaton.forkids.model.response.*
 import nh.hackaton.forkids.network.api.AccountApi
 
 class AccountRemoteDataSourceImpl (private val api : AccountApi) : AccountRemoteDataSource{
@@ -36,6 +34,18 @@ class AccountRemoteDataSourceImpl (private val api : AccountApi) : AccountRemote
         return api.getWithdraw(today,account,money,content,regno)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
+    }
+
+    override fun getDataRank(): Single<ResRankDto> {
+        return api.getRank()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+    }
+
+    override fun getDetailRank(): Single<ResDetailRankDto> {
+        return api.getDetailRank()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
     }
 
 }

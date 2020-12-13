@@ -19,16 +19,26 @@ class HomeKidsAnalysisFragment : BaseFragment<FragmentHomeKidsAnalysisBinding, A
 
     override val viewModel: AccountViewModel by inject()
 
+    val entries = ArrayList<PieEntry>()
+
     override fun initStartView() {
+        viewModel.getDataRank()
         viewDataBinding.piechart.setUsePercentValues(true)
 
-        val entries = ArrayList<PieEntry>()
-        entries.add(PieEntry(508f, "카페"))
-        entries.add(PieEntry(600f, "문방구"))
-        entries.add(PieEntry(300f, "음식점"))
-        entries.add(PieEntry(670f, "도서"))
-        entries.add(PieEntry(270f, "편의점"))
+        addData()
 
+    }
+
+    fun addData(){
+        viewModel.rankDataLiveData.observe(viewLifecycleOwner){
+            it.forEach {data ->
+                entries.add(PieEntry(data.COUNT.toFloat(), data.COMMENT))
+            }
+            pieDataDraw()
+        }
+    }
+
+    fun pieDataDraw(){
         val colorItems = ArrayList<Int>()
         for (c in ColorTemplate.VORDIPLOM_COLORS) colorItems.add(c)
         for (c in ColorTemplate.JOYFUL_COLORS) colorItems.add(c)
@@ -57,8 +67,6 @@ class HomeKidsAnalysisFragment : BaseFragment<FragmentHomeKidsAnalysisBinding, A
             animateXY(2500,2500)
             animate()
         }
-
-
     }
 
     override fun initDataBinding() {

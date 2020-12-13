@@ -1,14 +1,18 @@
 package nh.hackaton.forkids.ui.fragment.analysis
 
 import android.graphics.Color
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.utils.ColorTemplate
 import nh.hackaton.forkids.R
 import nh.hackaton.forkids.databinding.FragmentAnalysisBinding
+import nh.hackaton.forkids.ui.adapter.AccountAnalysisAdapter
+import nh.hackaton.forkids.ui.adapter.AccountListAdapter
 import nh.hackaton.forkids.ui.base.BaseFragment
 import nh.hackaton.forkids.ui.viewmodel.AccountViewModel
+import nh.hackaton.forkids.ui.viewmodel.EduViewModel
 import org.koin.android.ext.android.inject
 
 class AnalysisFragment : BaseFragment<FragmentAnalysisBinding, AccountViewModel>(){
@@ -17,14 +21,44 @@ class AnalysisFragment : BaseFragment<FragmentAnalysisBinding, AccountViewModel>
 
     override val viewModel: AccountViewModel by inject()
 
-    override fun initStartView() {
-        val entries = ArrayList<PieEntry>()
-        entries.add(PieEntry(508f, "카페"))
-        entries.add(PieEntry(600f, "문방구"))
-        entries.add(PieEntry(300f, "음식점"))
-        entries.add(PieEntry(670f, "도서"))
-        entries.add(PieEntry(270f, "편의점"))
+    val eduViewModel : EduViewModel by inject()
 
+    private val analysisAdapter = AccountAnalysisAdapter()
+
+    val entries = ArrayList<PieEntry>()
+
+    override fun initStartView() {
+        initAdapter()
+        viewModel.getDetailRank()
+        eduViewModel.getRecommendEdu()
+        addData()
+    }
+
+    fun initAdapter(){
+        viewDataBinding.rvAnalysisDetail.run {
+            layoutManager = LinearLayoutManager(requireContext()).apply {
+                orientation = LinearLayoutManager.VERTICAL
+            }
+            adapter = analysisAdapter
+            setHasFixedSize(true)
+        }
+    }
+
+    private fun addData(){
+        viewModel.detailRankDataLiveData.observe(viewLifecycleOwner){
+            analysisAdapter.setdata(it)
+            it.forEach {data ->
+                entries.add(PieEntry(data.EXPENSE.toFloat(), data.COMMENT))
+            }
+            drawChart()
+        }
+        eduViewModel.recommendEduItemLiveData.observe(viewLifecycleOwner){
+            viewDataBinding.data = it[0]
+        }
+    }
+
+
+    private fun drawChart(){
         val colorItems = ArrayList<Int>()
         for (c in ColorTemplate.VORDIPLOM_COLORS) colorItems.add(c)
         for (c in ColorTemplate.JOYFUL_COLORS) colorItems.add(c)
@@ -33,15 +67,12 @@ class AnalysisFragment : BaseFragment<FragmentAnalysisBinding, AccountViewModel>
         for (c in ColorTemplate.PASTEL_COLORS) colorItems.add(c)
         colorItems.add(ColorTemplate.getHoloBlue())
 
-        //val tf = Typeface.createFromAsset(requireContext().assets, "font/notosans_regular.ttf")
         val pieDataSet = PieDataSet(entries, "")
         pieDataSet.apply {
             colors = colorItems
             valueTextColor = Color.BLACK
             valueTextSize = 13f
-            //valueTypeface = tf
         }
-
 
         val pieData = PieData(pieDataSet)
         viewDataBinding.piechart2.apply {
@@ -53,7 +84,6 @@ class AnalysisFragment : BaseFragment<FragmentAnalysisBinding, AccountViewModel>
             animateXY(2500,2500)
             animate()
         }
-
     }
 
     override fun initDataBinding() {
