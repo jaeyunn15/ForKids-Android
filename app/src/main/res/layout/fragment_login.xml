@@ -35,6 +35,8 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_login_pw"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginEnd="25dp"
+            android:backgroundTint="@color/nh_yellow"
+            android:textCursorDrawable="@color/nh_yellow"
             android:layout_marginStart="30sp"
             android:id="@+id/et_login_pw"
             />
@@ -115,6 +117,7 @@
                         android:textColor="@color/grayscale_1100"/>
                     <Button android:layout_height="100dp"
                         android:background="@drawable/button_layout"
+                        android:textColor="@color/grayscale_1100"
                         android:textSize="30sp"/>
                     <Button android:id="@+id/key_Login_cancel"
                         android:layout_height="match_parent"

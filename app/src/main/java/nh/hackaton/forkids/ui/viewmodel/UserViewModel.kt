@@ -49,7 +49,7 @@ class UserViewModel (
                             it.forEach {data ->
                                 Log.d("회원가입 성공  ", data.USR_NM)
                                 _createStatus.postValue(true)
-                                _createAccount.postValue(data.ACC_NM)
+                                _createAccount.postValue(data.REG_NM)
                             }
                         },{
                             Log.d("회원가입 실패  ", it.localizedMessage)

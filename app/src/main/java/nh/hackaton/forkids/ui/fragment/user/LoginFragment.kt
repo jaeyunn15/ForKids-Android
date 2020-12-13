@@ -34,9 +34,12 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, UserViewModel>() {
 
     override val viewModel: UserViewModel by inject()
 
-    val num = "00121110000" //계좌번호 고정. 나중에 로컬에서 불러올.
+    var num = "00121110000" //계좌번호 고정. 나중에 로컬에서 불러올.
 
     override fun initStartView() {
+        sharedViewModel.userAccountLiveData.observe(viewLifecycleOwner){
+            num = it
+        }
         setCustomKeyboard()
     }
 
@@ -85,13 +88,13 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, UserViewModel>() {
                     val showtxt = StringBuilder(viewDataBinding.tvInivisibleTest.text)
                     showtxt.append(currentText)
 
+                    Log.d("로그인 시도  ", "$num / $showtxt")
                     viewModel.getUserLogin(num, showtxt.toString())
 
                     currentText.clear()
                     viewDataBinding.etLoginPw.text.clear()
                     showtxt.append("")
                     viewDataBinding.tvInivisibleTest.text = ""
-
                     observeData()
                 }
             }
@@ -127,7 +130,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, UserViewModel>() {
             if (it){
                 val signupActivity = activity as SignUpActivity
                 signupActivity.intentActivity()
-
             }
         }
     }

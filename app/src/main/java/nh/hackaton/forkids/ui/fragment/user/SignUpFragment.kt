@@ -1,5 +1,6 @@
 package nh.hackaton.forkids.ui.fragment.user
 
+import android.view.View
 import android.widget.Toast
 import nh.hackaton.forkids.R
 import nh.hackaton.forkids.databinding.FragmentSignUpBinding
@@ -37,6 +38,14 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding, UserViewModel>() {
         viewDataBinding.cvNext.setOnClickListener {
             checkDataIsNull()
             signUpActivity.replaceFragment(passwordFragment)
+        }
+        viewDataBinding.tvSignupTypeParent.setOnClickListener {
+            viewDataBinding.ivTypeCheckParent.visibility = View.VISIBLE
+            viewDataBinding.ivTypeCheckKids.visibility = View.GONE
+        }
+        viewDataBinding.tvSignupTypeKids.setOnClickListener {
+            viewDataBinding.ivTypeCheckParent.visibility = View.GONE
+            viewDataBinding.ivTypeCheckKids.visibility = View.VISIBLE
         }
     }
 

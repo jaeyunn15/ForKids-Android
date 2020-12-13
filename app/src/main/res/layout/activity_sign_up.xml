@@ -10,6 +10,7 @@
 
     <include
         android:id="@+id/tb_signup"
+        android:visibility="gone"
         layout="@layout/toolbar_signup"/>
 
     <FrameLayout

@@ -104,7 +104,7 @@ class PasswordFragment : BaseFragment<FragmentPasswordBinding, UserViewModel>() 
                 if (flipper.currentView.id == R.id.pw_frag_firstViewFlipper) {
                     flipper.displayedChild = 0
                     val showtxt = StringBuilder(viewDataBinding.tvPwFragPassword.text)
-                    showtxt.append("\n"+currentText)
+                    showtxt.append(currentText)
 
                     viewDataBinding.tvPwFragPassword.text = showtxt.toString()
                     input_password = showtxt.toString()
@@ -151,8 +151,8 @@ class PasswordFragment : BaseFragment<FragmentPasswordBinding, UserViewModel>() 
         val loginFragment = LoginFragment()
         viewModel.createStatusLiveData.observe(viewLifecycleOwner){
             if (it){
-                viewModel.createAccountLiveData.observe(viewLifecycleOwner){
-                    USER_ACCOUNT = it
+                viewModel.createAccountLiveData.observe(viewLifecycleOwner){data ->
+                    sharedViewModel.userAccount.postValue(data)
                     signUpActivity.replaceFragment(loginFragment)
                 }
             }

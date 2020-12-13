@@ -25,6 +25,8 @@ class SharedViewModel : BaseViewModel(){
     val type_livedata : LiveData<Int>
         get() = type
 
-
+    val userAccount = MutableLiveData<String>()
+    val userAccountLiveData : LiveData<String>
+        get() = userAccount
 
 }

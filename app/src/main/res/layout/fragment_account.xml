@@ -1,11 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.fragment.account.AccountFragment">
+
+    <include
+        layout="@layout/toolbar_account_search"
+        android:id="@+id/tb_account_search"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_account_search"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toBottomOf="@+id/tb_account_search"
+        android:layout_marginTop="?attr/actionBarSize"
+        tools:listitem="@layout/view_account_search"
+        tools:itemCount="20"
+        />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

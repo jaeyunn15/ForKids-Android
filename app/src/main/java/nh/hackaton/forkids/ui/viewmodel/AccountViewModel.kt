@@ -3,6 +3,7 @@ package nh.hackaton.forkids.ui.viewmodel
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import nh.hackaton.forkids.model.response.REC
 import nh.hackaton.forkids.network.repository.AccountRepo
 import nh.hackaton.forkids.ui.base.BaseViewModel
 
@@ -13,6 +14,10 @@ class AccountViewModel(
     private val _accountValue = MutableLiveData<String>()
     val accountValueLiveData : LiveData<String>
         get() = _accountValue
+
+    private val _accountListLiveData = MutableLiveData<List<REC>>()
+    val accountListLiveData : LiveData<List<REC>>
+        get() = _accountListLiveData
 
     fun getAccount(today:String, finacno :String, regno: String) {
         addDisposable(
@@ -30,8 +35,9 @@ class AccountViewModel(
         addDisposable(
             repo.getAccountList(today, startDate, endDate, regno)
                 .subscribe({
+                    _accountListLiveData.postValue(it.REC)
                     it.REC.forEach {rec->
-                        Log.d("계좌 조회 잔액@ ", rec.AftrBlnc)
+                        Log.d("계좌 조회 잔액@ ", rec.Txtm)
                     }
                 },{
                     Log.d("계좌 조회 잔액@ ", it.localizedMessage)

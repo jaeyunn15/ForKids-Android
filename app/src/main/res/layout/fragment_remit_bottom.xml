@@ -5,7 +5,7 @@
 <androidx.cardview.widget.CardView
     app:cardCornerRadius="20dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".ui.fragment.home.RemitBottomFragment"
     >
 
@@ -14,22 +14,105 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/tv_ex"
+            android:id="@+id/tv_remit_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="입금 금액 입력"
+            android:text="포키즈 간편 송금"
             android:fontFamily="@font/notosans_bold"
+            android:textColor="@color/grayscale_1000"
             android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginTop="25dp"
+            android:layout_marginStart="30sp"
+            android:background="@drawable/gradation_effect_main"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="송금 금액"
+            android:textSize="14sp"
+            android:textColor="@color/grayscale_1000"
+            android:fontFamily="@font/notosans_regular"
+            android:id="@+id/tv_remit_subtitle"
+            app:layout_constraintTop_toBottomOf="@+id/tv_remit_title"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="25dp"
+            />
+
+        <EditText
+            android:id="@+id/et_remit_money"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_remit_subtitle"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="5dp"
+            android:backgroundTint="@color/nh_yellow"
+            android:textCursorDrawable="@color/nh_yellow"
+            android:inputType="numberDecimal"
+            android:hint="금액을 입력"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="남길 메세지"
+            android:textSize="14sp"
+            android:textColor="@color/grayscale_1000"
+            android:fontFamily="@font/notosans_regular"
+            android:id="@+id/tv_remit_subtitle2"
+            app:layout_constraintTop_toBottomOf="@+id/et_remit_money"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="25dp"
+            />
+
+        <EditText
+            android:id="@+id/et_remit_message"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_remit_subtitle2"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="5dp"
+            android:backgroundTint="@color/nh_yellow"
+            android:textCursorDrawable="@color/nh_yellow"
+            android:inputType="text"
+            android:hint="5글자내로 입력"
+            />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_remit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/et_remit_message"
+            app:layout_constraintStart_toStartOf="parent"
+            app:cardCornerRadius="6dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="30dp"
+            app:cardBackgroundColor="@color/nh_green"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="@color/grayscale_100_white"
+                android:textSize="20sp"
+                android:fontFamily="@font/notosans_bold"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="보내기"/>
+        </androidx.cardview.widget.CardView>
+
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            app:layout_constraintTop_toBottomOf="@+id/tv_ex"
-
+            android:layout_height="350dp"
+            app:layout_constraintTop_toBottomOf="@+id/cv_remit"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

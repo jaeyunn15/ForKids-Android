@@ -5,6 +5,7 @@ import nh.hackaton.forkids.R
 import nh.hackaton.forkids.databinding.ActivitySignUpBinding
 import nh.hackaton.forkids.ui.base.BaseActivity
 import nh.hackaton.forkids.ui.fragment.user.LoginFragment
+import nh.hackaton.forkids.ui.fragment.user.SelectLoginTypeFragment
 import nh.hackaton.forkids.ui.fragment.user.SignUpFragment
 import nh.hackaton.forkids.util.replace
 
@@ -15,10 +16,8 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>() {
         get() = R.layout.activity_sign_up
 
     override fun initStartView() {
-        val signUpFragment = SignUpFragment()
-        val loginFragment = LoginFragment()
-
-        replaceFragment(loginFragment)
+        val selectFrag = SelectLoginTypeFragment()
+        replaceFragment(selectFrag)
     }
 
     override fun initDataBinding() {

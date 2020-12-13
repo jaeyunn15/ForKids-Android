@@ -60,7 +60,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginEnd="50dp"
                 android:hint="이름을 입력해주세요"
-                android:backgroundTint="@color/grayscale_600"
+                android:backgroundTint="@color/nh_yellow"
+                android:textCursorDrawable="@color/nh_yellow"
                 android:textColorHint="@color/grayscale_600"
                 />
 
@@ -84,7 +85,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginEnd="50dp"
                 android:hint="숫자만 입력 "
-                android:backgroundTint="@color/grayscale_600"
+                android:backgroundTint="@color/nh_yellow"
+                android:textCursorDrawable="@color/nh_yellow"
                 android:textColorHint="@color/grayscale_600"
                 />
 
@@ -108,8 +110,9 @@
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginEnd="50dp"
                 android:hint="[-]없이 입력 "
-                android:backgroundTint="@color/grayscale_600"
                 android:textColorHint="@color/grayscale_600"
+                android:backgroundTint="@color/nh_yellow"
+                android:textCursorDrawable="@color/nh_yellow"
                 />
 
             <TextView
@@ -137,6 +140,18 @@
                 android:background="@drawable/gradation_effect"
                 />
 
+            <ImageView
+                android:id="@+id/iv_type_check_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_chevron_down"
+                app:layout_constraintTop_toTopOf="@+id/tv_signup_type_parent"
+                app:layout_constraintStart_toStartOf="@id/tv_signup_type_parent"
+                app:layout_constraintBottom_toTopOf="@+id/tv_signup_type_parent"
+                android:visibility="gone"
+                />
+
+
             <TextView
                 android:id="@+id/tv_signup_type_kids"
                 android:layout_width="wrap_content"
@@ -148,6 +163,16 @@
                 android:layout_marginStart="15dp"
                 app:layout_constraintStart_toEndOf="@+id/tv_signup_type_parent"
                 android:background="@drawable/gradation_effect"
+                />
+
+            <ImageView
+                android:id="@+id/iv_type_check_kids"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_chevron_down"
+                app:layout_constraintTop_toTopOf="@+id/tv_signup_type_kids"
+                app:layout_constraintStart_toStartOf="@+id/tv_signup_type_kids"
+                app:layout_constraintBottom_toTopOf="@+id/tv_signup_type_kids"
                 />
 
 
